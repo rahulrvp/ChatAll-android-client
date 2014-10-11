@@ -69,7 +69,8 @@ public class FriendListAdapter extends BaseAdapter {
     }
 
     public void setValues(ArrayList<User> enquires) {
-        mFriends = enquires;
+        mFriends.clear();
+        mFriends.addAll(enquires);
         notifyDataSetChanged();
     }
 }
