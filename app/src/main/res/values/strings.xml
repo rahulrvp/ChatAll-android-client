@@ -41,4 +41,10 @@
     <string name="signup_success">Success</string>
     <string name="signup_failed">Failed</string>
 
+    <!--Languages-->
+
+    <string name="select_lang_text">Select Your Language</string>
+    <string name="submit_lang">Update</string>
+    <string name="title_activity_lang_settings">Language Settings</string>
+
 </resources>

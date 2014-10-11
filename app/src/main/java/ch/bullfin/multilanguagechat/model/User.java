@@ -15,6 +15,8 @@ public class User {
     private long id;
     private String name;
     private String email;
+    private String phoneNumber;
+    private String authentication_token;
 
     private static User instance = null;
 
@@ -63,7 +65,23 @@ public class User {
         return email;
     }
 
+    public String getAuthenticationToken() {
+        return authentication_token;
+    }
+
+    public void setAuthenticationToken(String authentication_tocken) {
+        this.authentication_token = authentication_tocken;
+    }
+
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }

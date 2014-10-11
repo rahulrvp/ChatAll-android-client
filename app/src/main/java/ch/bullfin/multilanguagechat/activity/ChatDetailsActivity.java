@@ -1,7 +1,9 @@
 package ch.bullfin.multilanguagechat.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
 
 import ch.bullfin.multilanguagechat.R;
@@ -14,13 +16,16 @@ import ch.bullfin.multilanguagechat.model.User;
  */
 public class ChatDetailsActivity extends Activity {
 
+    private ListView mListView;
+    private ChatDetailsAdapter mAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_details);
 
-        ListView listView = (ListView) findViewById(R.id.chat_details_list);
-        if (listView != null) {
+        mListView = (ListView) findViewById(R.id.chat_details_list);
+        if (mListView != null) {
             /* This is junk data */
             User user = new User();
             user.setId(1);
@@ -46,10 +51,22 @@ public class ChatDetailsActivity extends Activity {
             message2.setSender(user2);
             messages[1] = message2;
 
-            ChatDetailsAdapter adapter = new ChatDetailsAdapter(this);
-            adapter.updateMessages(messages);
+            mAdapter = new ChatDetailsAdapter(this);
+            mAdapter.updateMessages(messages);
 
-            listView.setAdapter(adapter);
+            mListView.setAdapter(mAdapter);
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (mAdapter != null) {
+            mAdapter.notifyDataSetChanged();
+        }
+    }
+
+    public void onConfigurationClicked(View view) {
+        startActivity(new Intent(this, LangSettingsActivity.class));
     }
 }
