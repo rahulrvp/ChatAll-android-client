@@ -1,6 +1,8 @@
 package ch.bullfin.multilanguagechat.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,7 @@ import java.util.Collections;
 import ch.bullfin.multilanguagechat.R;
 import ch.bullfin.multilanguagechat.async.TranslatorTask;
 import ch.bullfin.multilanguagechat.model.Message;
+import ch.bullfin.multilanguagechat.model.User;
 
 /**
  * Created by root on 11/10/14.
@@ -29,6 +32,7 @@ public class ChatDetailsAdapter extends BaseAdapter {
 
     public void updateMessages(Message[] messages) {
         Collections.addAll(this.messages, messages);
+        notifyDataSetChanged();
     }
 
     @Override
@@ -64,32 +68,45 @@ public class ChatDetailsAdapter extends BaseAdapter {
         viewHolder = (ViewHolder) convertView.getTag();
         Message message = (Message) getItem(position);
         if (viewHolder != null && message != null) {
-            if (viewHolder.senderNameText != null) {
-                viewHolder.senderNameText.setText(message.getSender().getName());
-            }
+            // Checking whether message sender is me.
+            if (message.getSender().getId() == User.getInstance(context).getId()) {
+                convertView.setBackgroundColor(Color.CYAN);
 
-            if (viewHolder.messageText != null) {
-                final ViewHolder finalViewHolder = viewHolder;
-                TranslatorTask.TranslationCallback callback = new TranslatorTask.TranslationCallback() {
-                    @Override
-                    public void onTranslationCompleted(String message) {
-                        finalViewHolder.messageText.setText(message);
-                    }
+                if (viewHolder.messageText != null) {
+                    viewHolder.messageText.setText(message.getText());
+                    viewHolder.messageText.setGravity(Gravity.RIGHT);
+                }
+            } else {
+                convertView.setBackgroundColor(Color.GREEN);
 
-                    @Override
-                    public void onTranslationFailed() {
+                if (viewHolder.senderNameText != null) {
+                    viewHolder.senderNameText.setText(message.getSender().getName());
+                }
 
-                    }
-                };
+                if (viewHolder.messageText != null) {
+                    viewHolder.messageText.setGravity(Gravity.LEFT);
+                    final ViewHolder finalViewHolder = viewHolder;
+                    TranslatorTask.TranslationCallback callback = new TranslatorTask.TranslationCallback() {
+                        @Override
+                        public void onTranslationCompleted(String message) {
+                            finalViewHolder.messageText.setText(message);
+                        }
 
-                new TranslatorTask(message.getLanguage_code(),
-                        "hi",
-                        message.getText(),
-                        callback).execute();
-            }
+                        @Override
+                        public void onTranslationFailed() {
 
-            if (viewHolder.sendingTimeText != null) {
-                viewHolder.sendingTimeText.setText("11:30pm");
+                        }
+                    };
+
+                    new TranslatorTask(message.getLanguage_code(),
+                            "kn",
+                            message.getText(),
+                            callback).execute();
+                }
+
+                if (viewHolder.sendingTimeText != null) {
+                    viewHolder.sendingTimeText.setText("11:30pm");
+                }
             }
         }
 
