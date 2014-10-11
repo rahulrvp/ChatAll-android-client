@@ -25,21 +25,23 @@ public class FriendListActivity extends BaseActivity {
     private Context context;
 
     private ProgressBar mPropertySpinner;
-    private ArrayList<User> mFriendList;
+    private ArrayList<User> mFriendLists;
+    private FriendListAdapter mFriendListAdapter;
+    private ListView mFriendList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friend_list);
         context = this;
 
-        FriendListAdapter friendListAdapter = new FriendListAdapter(mContext);
-        ListView friendList = (ListView) findViewById(R.id.friends_list);
+        mFriendListAdapter = new FriendListAdapter(mContext);
+        mFriendList = (ListView) findViewById(R.id.friends_list);
         mPropertySpinner = (ProgressBar) findViewById(R.id.friends_list_progress);
-        mFriendList = new ArrayList<User>();
+        mFriendLists = new ArrayList<User>();
 
-        if (friendList != null) {
-            friendList.setAdapter(friendListAdapter);
-            friendList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        if (mFriendList != null) {
+            mFriendList.setAdapter(mFriendListAdapter);
+            mFriendList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     startActivity(new Intent(context, ChatDetailsActivity.class));
@@ -72,13 +74,13 @@ public class FriendListActivity extends BaseActivity {
 
             if (response.getStatusCode() == 200) {
                 User[] users = gson.fromJson(response.getResponseBody(), User[].class);
-                mFriendList = new ArrayList<User>();
-                Collections.addAll(mFriendList, users);
+                mFriendLists = new ArrayList<User>();
+                Collections.addAll(mFriendLists, users);
 
 
             }
 
-            return mFriendList;
+            return mFriendLists;
         }
 
         @Override

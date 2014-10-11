@@ -59,7 +59,12 @@ public class FriendListAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-//        Fill data to List Cell
+        User friend = (User) getItem(position);
+        if (friend != null) {
+            if (viewHolder.name != null) {
+                viewHolder.name.setText(friend.getName());
+            }
+        }
         return convertView;
     }
 
