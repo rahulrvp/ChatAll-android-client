@@ -9,6 +9,15 @@ public class Message {
     private String text;
     private String language_code;
     private long timestamp;
+    private User sender;
+
+    public User getSender() {
+        return sender;
+    }
+
+    public void setSender(User sender) {
+        this.sender = sender;
+    }
 
     public long getId() {
         return id;

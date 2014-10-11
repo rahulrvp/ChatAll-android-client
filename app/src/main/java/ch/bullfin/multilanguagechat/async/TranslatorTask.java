@@ -1,7 +1,6 @@
 package ch.bullfin.multilanguagechat.async;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -17,6 +16,7 @@ import ch.bullfin.httpmanager.Response;
  */
 public class TranslatorTask extends AsyncTask<Void, Void, Response> {
     private static final String BASE_URL = "https://www.googleapis.com/language/translate/v2";
+    private static final String API_KEY = "AIzaSyAbHbWqKuRf_ggp2WGlp7p7kqG3Sx58RDc";
 
     private String source;
     private String target;
@@ -33,7 +33,7 @@ public class TranslatorTask extends AsyncTask<Void, Void, Response> {
     @Override
     protected Response doInBackground(Void... voids) {
         HashMap<String, String> apiParams = new HashMap<String, String>();
-        apiParams.put("key", "AIzaSyAbHbWqKuRf_ggp2WGlp7p7kqG3Sx58RDc");
+        apiParams.put("key", API_KEY);
         apiParams.put("source", source);
         apiParams.put("target", target);
         apiParams.put("q", q.replace(" ", "%20"));
@@ -43,12 +43,13 @@ public class TranslatorTask extends AsyncTask<Void, Void, Response> {
     @Override
     protected void onPostExecute(Response response) {
         if (response.getStatusCode() == 200) {
-            Log.v("JSON", response.getResponseBody());
             try {
-                JSONObject jsonObject = new JSONObject(response.getResponseBody());
-                JSONObject jsonObject1 = new JSONObject(jsonObject.getString("data"));
-                JSONArray jsonArray = jsonObject1.getJSONArray("translations");
-                callback.onTranslationCompleted(new JSONObject(jsonArray.get(0).toString()).getString("translatedText"));
+                JSONObject responseJSON = new JSONObject(response.getResponseBody());
+                JSONObject data = new JSONObject(responseJSON.getString("data"));
+                JSONArray translations = data.getJSONArray("translations");
+                if (translations.get(0) != null) {
+                    callback.onTranslationCompleted(new JSONObject(translations.get(0).toString()).getString("translatedText"));
+                }
             } catch (JSONException e) {
                 e.printStackTrace();
             }

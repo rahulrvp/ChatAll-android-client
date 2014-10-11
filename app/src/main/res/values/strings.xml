@@ -15,7 +15,6 @@
     <string name="login_success">Login Success</string>
     <string name="login_failed">Login Failed</string>
     <string name="login_signup">Sign up</string>
-    <string name="login_forgot_password">Forgot Password ?</string>
     <string name="sign_up_msg">Not a member yet?</string>
     <string name="title_activity_friend_list">FriendListActivity</string>
 
@@ -24,7 +23,22 @@
     <string name="friends_count">results</string>
     <string name="title_activity_my_chats">MyChatsActivity</string>
 
-    <!--Chat Page-->
+    <!-- Chat Page -->
     <string name="chats_header">My Chats</string>
+    <string name="title_activity_sign_up">SignUpActivity</string>
+
+    <!--Signup page-->
+    <string name="signup_email_hint">Email</string>
+    <string name="signup_first_name_hint">First Name</string>
+    <string name="signup_last_name_hint">Last Name</string>
+    <string name="signup_password_hint">Password</string>
+    <string name="signup_phone">Phone</string>
+    <string name="signup_first_name_error">Invalid first name</string>
+    <string name="signup_last_name_error">invalid last name</string>
+    <string name="signup_email_error">Invalid email</string>
+    <string name="signup_password_error">Invalid password</string>
+    <string name="signup_phone_number_error">Invalid phone number</string>
+    <string name="signup_success">Success</string>
+    <string name="signup_failed">Failed</string>
 
 </resources>

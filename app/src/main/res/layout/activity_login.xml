@@ -33,18 +33,6 @@
             android:hint="@string/login_password"/>
 
         <Button
-            android:id="@+id/login_forget_password"
-            android:layout_height="25dp"
-            android:layout_width="match_parent"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="10dp"
-            android:gravity="right"
-            android:visibility="invisible"
-            android:text="@string/login_forgot_password"
-            android:background="@android:color/transparent"
-            android:textColor="@color/theme_inverse_color"/>
-
-        <Button
             android:id="@+id/login_button"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -54,6 +42,19 @@
             android:text="@string/login_sign_in"
             android:background="@drawable/login_button_background_selector"
             android:onClick="onLoginClicked"
+            android:textColor="@color/theme_inverse_color"/>
+
+        <Button
+            android:id="@+id/signup"
+            android:layout_height="25dp"
+            android:layout_width="match_parent"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:gravity="right"
+            android:visibility="visible"
+            android:onClick="onSignupClicked"
+            android:text="@string/sign_up_msg"
+            android:background="@android:color/transparent"
             android:textColor="@color/theme_inverse_color"/>
 
     </LinearLayout>
