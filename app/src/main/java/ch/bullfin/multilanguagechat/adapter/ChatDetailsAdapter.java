@@ -71,14 +71,14 @@ public class ChatDetailsAdapter extends BaseAdapter {
         if (viewHolder != null && message != null) {
             // Checking whether message sender is me.
             if (message.getSender().getId() == User.getInstance(context).getId()) {
-                convertView.setBackgroundColor(Color.CYAN);
+                convertView.setBackgroundColor(context.getResources().getColor(R.color.resiever_color));
 
                 if (viewHolder.messageText != null) {
                     viewHolder.messageText.setText(message.getText());
                     viewHolder.messageText.setGravity(Gravity.RIGHT);
                 }
             } else {
-                convertView.setBackgroundColor(Color.GREEN);
+                convertView.setBackgroundColor(context.getResources().getColor(R.color.sender_color));
 
                 if (viewHolder.senderNameText != null) {
                     viewHolder.senderNameText.setText(message.getSender().getName());

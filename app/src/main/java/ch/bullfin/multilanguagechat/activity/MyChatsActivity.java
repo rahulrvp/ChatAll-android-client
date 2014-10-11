@@ -38,7 +38,9 @@ public class MyChatsActivity extends BaseActivity {
             chatList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    startActivity(new Intent(mContext, ChatDetailsActivity.class));
+                    Intent intent = new Intent(mContext, ChatDetailsActivity.class);
+                    intent.putExtra("chat_id", 1);
+                    startActivity(intent);
                 }
             });
         }
