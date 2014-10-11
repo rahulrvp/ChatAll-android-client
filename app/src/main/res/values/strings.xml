@@ -41,4 +41,33 @@
     <string name="signup_success">Success</string>
     <string name="signup_failed">Failed</string>
 
+    <!--Languages-->
+
+    <string name="select_lang_text">Select Your Language</string>
+    <string name="submit_lang">Go!</string>
+    <string name="title_activity_lang_settings">Language Settings</string>
+
+    <string-array name="language_code_list">
+        <item>Bengali</item>
+        <item>English</item>
+        <item>Gujarati</item>
+        <item>Hindi</item>
+        <item>Kannada</item>
+        <item>Punjabi</item>
+        <item>Tamil</item>
+        <item>Telugu</item>
+    </string-array>
+
+    <string-array name="language_list">
+        <item>bn</item>
+        <item>en</item>
+        <item>gu</item>
+        <item>hi</item>
+        <item>Kannada</item>
+        <item>Punjabi</item>
+        <item>Tamil</item>
+        <item>Telugu</item>
+    </string-array>
+
+
 </resources>

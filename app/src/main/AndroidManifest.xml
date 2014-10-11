@@ -44,6 +44,11 @@
             android:label="@string/title_activity_sign_up"
             android:screenOrientation="portrait" >
         </activity>
+
+        <activity
+            android:name=".activity.LangSettingsActivity"
+            android:label="@string/title_activity_lang_settings"/>
+
     </application>
 
 </manifest>
