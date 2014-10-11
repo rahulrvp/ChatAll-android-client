@@ -11,6 +11,7 @@
         android:layout_alignParentTop="true"
         android:gravity="center_vertical"
         android:id="@+id/friend_list_header"
+        android:layout_marginLeft="50dp"
         android:orientation="horizontal"
         android:background="@drawable/header_bg_image">
 
@@ -24,6 +25,15 @@
             android:textColor="@color/theme_background_color"
             android:text="@string/friends_header"
             android:background="@android:color/transparent"/>
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/chat"
+            android:layout_marginRight="10dp"
+            android:onClick="onChatsClicked"
+            android:background="@android:color/transparent"
+            android:scaleType="fitXY"/>
 
     </LinearLayout>
 
@@ -39,10 +49,10 @@
         <ImageButton
             android:id="@+id/property_list_home_button"
             android:layout_height="50dp"
-            android:layout_width="60dp"
+            android:layout_width="50dp"
             android:scaleType="fitXY"
-            android:src="@drawable/search_home_icon"
-            android:background="@color/theme_background_color"/>
+            android:src="@drawable/friend"
+            android:background="@android:color/transparent"/>
 
         <LinearLayout
             android:layout_height="50dp"

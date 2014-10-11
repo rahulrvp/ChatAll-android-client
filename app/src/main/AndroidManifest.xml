@@ -27,6 +27,11 @@
             android:label="@string/title_activity_friend_list"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name=".activity.MyChatsActivity"
+            android:label="@string/title_activity_my_chats"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>

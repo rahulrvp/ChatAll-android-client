@@ -1,12 +1,15 @@
 package ch.bullfin.multilanguagechat.activity;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+
 import ch.bullfin.multilanguagechat.R;
 
-public class FriendListActivity extends ActionBarActivity {
+public class FriendListActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -14,23 +17,8 @@ public class FriendListActivity extends ActionBarActivity {
         setContentView(R.layout.activity_friend_list);
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.friend_list, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+    public void onChatsClicked(View view) {
+        Intent intent = new Intent(mContext, MyChatsActivity.class);
+        startActivity(intent);
     }
 }
