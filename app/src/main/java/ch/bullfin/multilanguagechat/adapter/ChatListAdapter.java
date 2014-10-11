@@ -12,8 +12,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import ch.bullfin.multilanguagechat.R;
-import ch.bullfin.multilanguagechat.activity.model.Chat;
-import ch.bullfin.multilanguagechat.model.User;
+import ch.bullfin.multilanguagechat.model.Chat;
 
 /**
  * Created by meera on 11/10/14.
@@ -78,7 +77,8 @@ public class ChatListAdapter extends BaseAdapter {
     }
 
     public void setValues(ArrayList<Chat> enquires) {
-        mchats = enquires;
+        mchats.clear();
+        mchats.addAll(enquires);
         notifyDataSetChanged();
     }
 }
