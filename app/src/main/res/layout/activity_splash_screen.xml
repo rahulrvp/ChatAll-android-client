@@ -36,7 +36,7 @@
         android:gravity="center"
         android:textColor="@color/theme_inverse_color"
         android:textSize="20sp"
-        android:text="Chat"/>
+        android:text="Chat independent of languages"/>
 
 
 
