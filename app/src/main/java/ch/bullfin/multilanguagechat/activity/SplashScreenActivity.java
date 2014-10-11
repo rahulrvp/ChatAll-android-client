@@ -2,11 +2,7 @@ package ch.bullfin.multilanguagechat.activity;
 
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.BaseAdapter;
 
 import ch.bullfin.multilanguagechat.R;
 

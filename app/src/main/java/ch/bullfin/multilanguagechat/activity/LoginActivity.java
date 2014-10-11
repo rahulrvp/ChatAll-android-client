@@ -23,7 +23,7 @@ import ch.bullfin.multilanguagechat.R;
 import utils.BFUtils;
 
 
-public class LoginActivity extends ActionBarActivity {
+public class LoginActivity extends BaseActivity {
 
     private EditText mUsername;
     private EditText mPassword;
