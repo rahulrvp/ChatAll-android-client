@@ -42,6 +42,7 @@
         android:layout_height="wrap_content">
 
         <EditText
+            android:id="@+id/message_field"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content" />
@@ -49,7 +50,8 @@
         <Button
             android:layout_width="90dp"
             android:layout_height="50dp"
-            android:text="send"/>
+            android:text="send"
+            android:onClick="onSendMessageClicked"/>
 
     </LinearLayout>
 

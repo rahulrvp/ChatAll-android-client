@@ -4,10 +4,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import ch.bullfin.multilanguagechat.R;
 import ch.bullfin.multilanguagechat.adapter.ChatDetailsAdapter;
+import ch.bullfin.multilanguagechat.async.SendMessageTask;
+import ch.bullfin.multilanguagechat.config.Config;
 import ch.bullfin.multilanguagechat.model.Message;
 import ch.bullfin.multilanguagechat.model.User;
 
@@ -18,12 +21,14 @@ public class ChatDetailsActivity extends Activity {
 
     private ListView mListView;
     private ChatDetailsAdapter mAdapter;
+    private EditText mMessageField;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_details);
 
+        mMessageField = (EditText) findViewById(R.id.message_field);
         mListView = (ListView) findViewById(R.id.chat_details_list);
         if (mListView != null) {
             /* This is junk data */
@@ -68,5 +73,23 @@ public class ChatDetailsActivity extends Activity {
 
     public void onConfigurationClicked(View view) {
         startActivity(new Intent(this, LangSettingsActivity.class));
+    }
+
+    public void onSendMessageClicked(View view) {
+        String messageString = mMessageField.getText().toString();
+        if (messageString != null && messageString.length() > 0) {
+            Message message = new Message();
+            message.setTimestamp(System.currentTimeMillis() / 1000); // time in seconds
+            message.setText(messageString);
+            message.setLanguage_code(Config.getInstance(this).getLanguageCode());
+            message.setSender(User.getInstance(this));
+
+            new SendMessageTask(this, message, new SendMessageTask.SendMessageCallback() {
+                @Override
+                public void onMessageSent() {
+
+                }
+            }).execute();
+        }
     }
 }
