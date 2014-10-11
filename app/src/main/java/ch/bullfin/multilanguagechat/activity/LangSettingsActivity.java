@@ -9,7 +9,9 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Locale;
 
 import ch.bullfin.multilanguagechat.R;
@@ -44,6 +46,13 @@ public class LangSettingsActivity extends BaseActivity {
             mLangMap.put(l.getDisplayLanguage(),l.getLanguage());
             Log.d("lang", l.getDisplayLanguage()+" "+l.getLanguage());
         }
+
+        HashSet<String> hashSet = new HashSet<String>();
+        hashSet.addAll(mDeviceLangList);
+        mDeviceLangList.clear();
+        mDeviceLangList.addAll(hashSet);
+        Collections.sort(mDeviceLangList);
+
         //mSelectedLangList = new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.language_list)));
         //mSelectedLangList.retainAll(mDeviceLangList);
 

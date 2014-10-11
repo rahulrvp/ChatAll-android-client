@@ -23,7 +23,7 @@ public class Configuration {
 
     synchronized public static Configuration getInstance(Context context) {
         if (instance == null) {
-            String configJson = context.getSharedPreferences(PREF_CURRENT_LANG_KEY, Context.MODE_PRIVATE).getString("instance", null);
+            String configJson = context.getSharedPreferences(PREF_FILE, Context.MODE_PRIVATE).getString(PREF_CURRENT_LANG_KEY, null);
             try{
                 instance = new Gson().fromJson(configJson, Configuration.class);
             } catch ( JsonSyntaxException e) {
@@ -38,8 +38,8 @@ public class Configuration {
     }
 
     public void save(Context context) {
-        String sessionJson = new Gson().toJson(this);
-        context.getSharedPreferences(PREF_FILE, Context.MODE_PRIVATE).edit().putString(PREF_CURRENT_LANG_KEY, sessionJson).commit();
+        String configJson = new Gson().toJson(this);
+        context.getSharedPreferences(PREF_FILE, Context.MODE_PRIVATE).edit().putString(PREF_CURRENT_LANG_KEY, configJson).commit();
     }
 
 
