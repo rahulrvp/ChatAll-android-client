@@ -1,9 +1,11 @@
 package ch.bullfin.multilanguagechat.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
@@ -20,6 +22,7 @@ import ch.bullfin.multilanguagechat.adapter.FriendListAdapter;
 import ch.bullfin.multilanguagechat.model.User;
 
 public class FriendListActivity extends BaseActivity {
+    private Context context;
 
     private ProgressBar mPropertySpinner;
     private ArrayList<User> mFriendList;
@@ -27,6 +30,7 @@ public class FriendListActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friend_list);
+        context = this;
 
         FriendListAdapter friendListAdapter = new FriendListAdapter(mContext);
         ListView friendList = (ListView) findViewById(R.id.friends_list);
@@ -35,6 +39,12 @@ public class FriendListActivity extends BaseActivity {
 
         if (friendList != null) {
             friendList.setAdapter(friendListAdapter);
+            friendList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    startActivity(new Intent(context, ChatDetailsActivity.class));
+                }
+            });
         }
     }
 

@@ -1,8 +1,7 @@
 package ch.bullfin.multilanguagechat.adapter;
 
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
+import android.text.format.Time;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,18 +12,19 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import ch.bullfin.multilanguagechat.R;
-import ch.bullfin.multilanguagechat.model.User;
+import ch.bullfin.multilanguagechat.model.Chat;
 
 /**
- * Created by sreejith on 11/10/14.
+ * Created by meera on 11/10/14.
  */
-public class FriendListAdapter extends BaseAdapter {
-    Context mContext;
-    private ArrayList<User> mFriends;
+public class ChatListAdapter extends BaseAdapter {
 
-    public FriendListAdapter(Context context) {
+    Context mContext;
+    private ArrayList<Chat> mchats;
+
+    public ChatListAdapter(Context context) {
         this.mContext = context;
-        mFriends = new ArrayList<User>();
+        mchats = new ArrayList<Chat>();
     }
 
     @Override
@@ -33,8 +33,8 @@ public class FriendListAdapter extends BaseAdapter {
     }
 
     @Override
-    public User getItem(int position) {
-        return mFriends.get(position);
+    public Chat getItem(int position) {
+        return mchats.get(position);
     }
 
     @Override
@@ -46,19 +46,25 @@ public class FriendListAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup viewGroup) {
         ViewHolder viewHolder = null;
         if (convertView == null) {
-            convertView = LayoutInflater.from(mContext).inflate(R.layout.friend_list_item, null, false);
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.chat_list_item, null, false);
 
             if (convertView == null) return null;
 
             viewHolder = new ViewHolder();
             viewHolder.prof_pic = (ImageView) convertView.findViewById(R.id.friend_image);
             viewHolder.name = (TextView) convertView.findViewById(R.id.friend_name);
+            viewHolder.time = (TextView) convertView.findViewById(R.id.time);
+            viewHolder.chatmsg = (TextView) convertView.findViewById(R.id.msg);
             convertView.setTag(viewHolder);
 
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-
+            if (viewHolder != null) {
+                viewHolder.name.setText("Meera");
+                viewHolder.time.setText("7.00pm");
+                viewHolder.chatmsg.setText("hello");
+            }
 //        Fill data to List Cell
         return convertView;
     }
@@ -66,11 +72,13 @@ public class FriendListAdapter extends BaseAdapter {
     private class ViewHolder {
         TextView name;
         ImageView prof_pic;
+        TextView time;
+        TextView chatmsg;
     }
 
-    public void setValues(ArrayList<User> enquires) {
-        mFriends.clear();
-        mFriends.addAll(enquires);
+    public void setValues(ArrayList<Chat> enquires) {
+        mchats.clear();
+        mchats.addAll(enquires);
         notifyDataSetChanged();
     }
 }
