@@ -1,4 +1,4 @@
-package ch.bullfin.multilanguagechat.activity.model;
+package ch.bullfin.multilanguagechat.model;
 
 /**
  * Created by root on 11/10/14.
