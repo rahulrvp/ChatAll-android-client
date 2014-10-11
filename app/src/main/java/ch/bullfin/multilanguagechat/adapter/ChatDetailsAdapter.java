@@ -7,33 +7,43 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 import ch.bullfin.multilanguagechat.R;
 import ch.bullfin.multilanguagechat.async.TranslatorTask;
+import ch.bullfin.multilanguagechat.model.Message;
 
 /**
  * Created by root on 11/10/14.
  */
 public class ChatDetailsAdapter extends BaseAdapter {
 
+    private ArrayList<Message> messages;
     private Context context;
 
     public ChatDetailsAdapter(Context context) {
         this.context = context;
+        this.messages = new ArrayList<Message>();
+    }
+
+    public void updateMessages(Message[] messages) {
+        Collections.addAll(this.messages, messages);
     }
 
     @Override
     public int getCount() {
-        return 1;
+        return messages.size();
     }
 
     @Override
-    public Object getItem(int i) {
-        return null;
+    public Object getItem(int position) {
+        return messages.get(position);
     }
 
     @Override
-    public long getItemId(int i) {
-        return 0;
+    public long getItemId(int position) {
+        return messages.get(position).getId();
     }
 
     @Override
@@ -52,27 +62,30 @@ public class ChatDetailsAdapter extends BaseAdapter {
         }
 
         viewHolder = (ViewHolder) convertView.getTag();
-        if (viewHolder != null) {
+        Message message = (Message) getItem(position);
+        if (viewHolder != null && message != null) {
             if (viewHolder.senderNameText != null) {
-                viewHolder.senderNameText.setText("Suresh Babu");
+                viewHolder.senderNameText.setText(message.getSender().getName());
             }
 
             if (viewHolder.messageText != null) {
                 final ViewHolder finalViewHolder = viewHolder;
-                new TranslatorTask("en",
+                TranslatorTask.TranslationCallback callback = new TranslatorTask.TranslationCallback() {
+                    @Override
+                    public void onTranslationCompleted(String message) {
+                        finalViewHolder.messageText.setText(message);
+                    }
+
+                    @Override
+                    public void onTranslationFailed() {
+
+                    }
+                };
+
+                new TranslatorTask(message.getLanguage_code(),
                         "hi",
-                        "Hi Suresh, this is the message for you.",
-                        new TranslatorTask.TranslationCallback() {
-                            @Override
-                            public void onTranslationCompleted(String message) {
-                                finalViewHolder.messageText.setText(message);
-                            }
-
-                            @Override
-                            public void onTranslationFailed() {
-
-                            }
-                        }).execute();
+                        message.getText(),
+                        callback).execute();
             }
 
             if (viewHolder.sendingTimeText != null) {
