@@ -41,7 +41,7 @@ public class SignUpActivity extends BaseActivity {
         mPasswordField = (EditText) findViewById(R.id.signup_password);
         mPhoneNumberField= (EditText) findViewById(R.id.signup_phone);
         mSignUpSpinner = (ProgressBar) findViewById(R.id.signup_progress);
-        mCurrentUser = new User();
+        mCurrentUser = User.getInstance(mContext);
     }
 
 
@@ -114,6 +114,7 @@ public class SignUpActivity extends BaseActivity {
             }
 
             if (result == 200) {
+                mCurrentUser.save(mContext);
                 Toast.makeText(mContext, getResources().getString(R.string.signup_success), Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(mContext, getResources().getString(R.string.signup_failed), Toast.LENGTH_SHORT).show();
