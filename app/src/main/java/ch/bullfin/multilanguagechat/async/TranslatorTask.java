@@ -17,6 +17,7 @@ import ch.bullfin.httpmanager.Response;
  */
 public class TranslatorTask extends AsyncTask<Void, Void, Response> {
     private static final String BASE_URL = "https://www.googleapis.com/language/translate/v2";
+    private static final String API_KEY = "AIzaSyAbHbWqKuRf_ggp2WGlp7p7kqG3Sx58RDc";
 
     private String source;
     private String target;
@@ -33,7 +34,7 @@ public class TranslatorTask extends AsyncTask<Void, Void, Response> {
     @Override
     protected Response doInBackground(Void... voids) {
         HashMap<String, String> apiParams = new HashMap<String, String>();
-        apiParams.put("key", "AIzaSyAbHbWqKuRf_ggp2WGlp7p7kqG3Sx58RDc");
+        apiParams.put("key", API_KEY);
         apiParams.put("source", source);
         apiParams.put("target", target);
         apiParams.put("q", q.replace(" ", "%20"));
