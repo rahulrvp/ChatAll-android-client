@@ -30,7 +30,7 @@ public class TranslatorTask extends AsyncTask<Void, Void, Response> {
         apiParams.put("key", "");
         apiParams.put("source", source);
         apiParams.put("target", target);
-        apiParams.put("q", q.replace(" ", "%20"));
+        apiParams.put("q", q);
         return new HTTPManager(BASE_URL).get(apiParams);
     }
 
