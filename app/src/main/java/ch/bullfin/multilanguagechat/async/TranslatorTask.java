@@ -1,4 +1,4 @@
-package ch.bullfin.multilanguagechat.activity.async;
+package ch.bullfin.multilanguagechat.async;
 
 import android.os.AsyncTask;
 import android.util.Log;
