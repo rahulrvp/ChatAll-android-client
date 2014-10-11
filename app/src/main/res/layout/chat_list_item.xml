@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:background="@drawable/white_card_shape">
+    <TextView
+        android:id="@+id/border_line"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/theme_background_color"/>
+    <ImageView
+        android:id="@+id/friend_image"
+        android:layout_below="@+id/border_line"
+        android:layout_margin="10dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/placeholder_photo"/>
+    <TextView
+        android:layout_toRightOf="@id/friend_image"
+        android:id="@+id/friend_name"
+        android:layout_marginTop="20dp"
+        android:layout_width="150dp"
+        android:layout_height="25dp"
+        android:singleLine="true"/>
+    <TextView
+        android:layout_alignParentRight="true"
+        android:id="@+id/time"
+        android:gravity="right"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="100dp"
+        android:layout_height="25dp" />
+    <TextView
+        android:id="@+id/msg"
+        android:layout_width="match_parent"
+        android:singleLine="true"
+        android:layout_height="25dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_toRightOf="@id/friend_image"
+        android:layout_below="@+id/friend_name"/>
+
+</RelativeLayout>
