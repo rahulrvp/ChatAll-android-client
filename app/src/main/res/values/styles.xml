@@ -19,4 +19,18 @@
         <item name="android:background">@drawable/login_edittext_background_shape</item>
     </style>
 
+    <style name="signup_page_edit_text_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:layout_marginLeft">15dp</item>
+        <item name="android:layout_marginRight">15dp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:paddingLeft">20dp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/theme_inverse_color</item>
+        <item name="android:textColorHint">@color/theme_inverse_color</item>
+        <item name="android:background">@drawable/edit_text_background</item>
+    </style>
+
 </resources>
