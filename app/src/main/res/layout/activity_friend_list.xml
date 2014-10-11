@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/theme_inverse_color">
+
+    <LinearLayout
+        android:layout_height="60dp"
+        android:layout_width="match_parent"
+        android:layout_alignParentTop="true"
+        android:gravity="center_vertical"
+        android:id="@+id/friend_list_header"
+        android:orientation="horizontal"
+        android:background="@drawable/header_bg_image">
+
+        <TextView
+            android:layout_height="40dp"
+            android:layout_width="0dp"
+            android:textSize="25sp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:textColor="@color/theme_background_color"
+            android:text="@string/friends_header"
+            android:background="@android:color/transparent"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/friend_list_sub_header"
+        android:layout_height="60dp"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_below="@+id/friend_list_header"
+        android:background="@drawable/sub_header_bg">
+
+        <ImageButton
+            android:id="@+id/property_list_home_button"
+            android:layout_height="50dp"
+            android:layout_width="60dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/search_home_icon"
+            android:background="@color/theme_background_color"/>
+
+        <LinearLayout
+            android:layout_height="50dp"
+            android:layout_width="60dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/friend_list_count"
+                android:layout_height="25dp"
+                android:layout_width="match_parent"
+                android:textColor="@color/theme_background_color"
+                android:gravity="center"
+                android:text="0"
+                android:textSize="23sp"/>
+
+            <TextView
+                android:id="@+id/property_list_count"
+                android:layout_height="20dp"
+                android:layout_width="match_parent"
+                android:textColor="@color/theme_background_color"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:text="@string/friends_count"/>
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/friend_filter_text"
+            android:layout_height="40dp"
+            android:layout_width="match_parent"
+            android:layout_marginRight="10dp"
+            android:paddingLeft="10dp"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:background="@drawable/friend_list_search_box_shape"/>
+
+    </LinearLayout>
+
+    <ListView
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:id="@+id/friends_list"
+        android:scrollbars="none"
+        android:dividerHeight="5dp"
+        android:divider="@android:color/transparent"
+        android:layout_below="@+id/friend_list_sub_header"/>
+
+    <ProgressBar
+        android:id="@+id/friends_list_progress"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
+
+</RelativeLayout>
