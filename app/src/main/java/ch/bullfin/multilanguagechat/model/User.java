@@ -12,7 +12,7 @@ public class User {
     private static final String PREF_FILE = "UserFile";
     private static final String PREF_KEY = "UserKey";
 
-    private String id;
+    private long id;
     private String name;
     private String email;
     private String phoneNumber;
@@ -45,11 +45,11 @@ public class User {
                 .commit();
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 

@@ -65,7 +65,7 @@ public class LoginTask extends AsyncTask<Void,Void,Boolean> {
                 mCurrentUser.setAuthenticationToken(jsonObject.getString("authentication_token"));
                 mCurrentUser.setName(jsonObject.getString("name"));
                 mCurrentUser.setEmail(jsonObject.getString("email"));
-                mCurrentUser.setId(jsonObject.getString("id"));
+                mCurrentUser.setId(jsonObject.getLong("id"));
                 mCurrentUser.save(mContext);
                 return  true;
             } catch (JSONException e) {
