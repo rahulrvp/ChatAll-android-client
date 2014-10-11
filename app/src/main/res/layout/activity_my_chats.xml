@@ -3,7 +3,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/theme_inverse_color">
+    android:background="@color/page_background">
 
     <LinearLayout
         android:layout_height="60dp"
@@ -40,8 +40,9 @@
     <ListView
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginRight="7dp"
         android:id="@+id/friends_list"
         android:scrollbars="none"
         android:dividerHeight="5dp"

@@ -22,4 +22,9 @@ public class LoginActivity extends BaseActivity {
         Intent intent = new Intent(mContext, MyChatsActivity.class);
         startActivity(intent);
     }
+
+    public void onSignupClicked(View view) {
+        Intent intent = new Intent(mContext, SignUpActivity.class);
+        startActivity(intent);
+    }
 }
