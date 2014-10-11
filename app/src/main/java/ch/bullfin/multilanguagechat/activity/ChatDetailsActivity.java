@@ -11,6 +11,7 @@ import ch.bullfin.multilanguagechat.R;
 import ch.bullfin.multilanguagechat.adapter.ChatDetailsAdapter;
 import ch.bullfin.multilanguagechat.async.SendMessageTask;
 import ch.bullfin.multilanguagechat.config.Config;
+import ch.bullfin.multilanguagechat.model.Chat;
 import ch.bullfin.multilanguagechat.model.Message;
 import ch.bullfin.multilanguagechat.model.User;
 
@@ -23,19 +24,20 @@ public class ChatDetailsActivity extends Activity {
     private ChatDetailsAdapter mAdapter;
     private EditText mMessageField;
     private long mChatId;
+    private Chat mChat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_details);
 
-        mChatId = getIntent().getLongExtra("chat_id", 0);
+        mChat = (Chat) getIntent().getSerializableExtra("chat");
 
         mMessageField = (EditText) findViewById(R.id.message_field);
         mListView = (ListView) findViewById(R.id.chat_details_list);
         if (mListView != null) {
             /* This is junk data */
-            User user = new User();
+            /*User user = new User();
             user.setId(1);
             user.setName("Rahul");
 
@@ -57,10 +59,10 @@ public class ChatDetailsActivity extends Activity {
             user2.setName("Saneep");
 
             message2.setSender(user2);
-            messages[1] = message2;
+            messages[1] = message2;*/
 
             mAdapter = new ChatDetailsAdapter(this);
-            mAdapter.updateMessages(messages);
+            mAdapter.updateMessages(mChat.getMessage_texts());
 
             mListView.setAdapter(mAdapter);
         }
@@ -82,11 +84,11 @@ public class ChatDetailsActivity extends Activity {
         String messageString = mMessageField.getText().toString();
         if (messageString != null && messageString.length() > 0) {
             Message message = new Message();
-            message.setTimestamp(System.currentTimeMillis() / 1000); // time in seconds
+            message.setCreated_at(System.currentTimeMillis() / 1000); // time in seconds
             message.setText(messageString);
-            message.setLanguage_code(Config.getInstance(this).getLanguageCode());
+            message.setSender_language(Config.getInstance(this).getLanguageCode());
             message.setSender(User.getInstance(this));
-            message.setChat_id(mChatId);
+            message.setChat_id(mChat.getId());
 
             new SendMessageTask(this, message, new SendMessageTask.SendMessageCallback() {
                 @Override

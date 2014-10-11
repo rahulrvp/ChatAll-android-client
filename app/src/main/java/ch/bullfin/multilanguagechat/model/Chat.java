@@ -1,9 +1,11 @@
 package ch.bullfin.multilanguagechat.model;
 
+import java.io.Serializable;
+
 /**
  * Created by root on 11/10/14.
  */
-public class Chat {
+public class Chat implements Serializable {
     private long id;
     private User sender;
     private User receiver;

@@ -5,10 +5,12 @@ import android.content.Context;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
+import java.io.Serializable;
+
 /**
  * Created by root on 11/10/14.
  */
-public class User {
+public class User implements Serializable {
     private static final String PREF_FILE = "UserFile";
     private static final String PREF_KEY = "UserKey";
 

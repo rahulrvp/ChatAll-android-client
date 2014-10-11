@@ -31,7 +31,7 @@ public class ChatListAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 3;
+        return mchats.size();
     }
 
     @Override
