@@ -10,9 +10,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import ch.bullfin.multilanguagechat.R;
 import ch.bullfin.multilanguagechat.model.Chat;
+import ch.bullfin.multilanguagechat.model.Message;
 
 /**
  * Created by meera on 11/10/14.
@@ -76,9 +78,9 @@ public class ChatListAdapter extends BaseAdapter {
         TextView chatmsg;
     }
 
-    public void setValues(ArrayList<Chat> enquires) {
+    public void setValues(Chat[] chats) {
         mchats.clear();
-        mchats.addAll(enquires);
+        Collections.addAll(mchats, chats);
         notifyDataSetChanged();
     }
 }

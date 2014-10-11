@@ -86,7 +86,7 @@ public class ChatDetailsAdapter extends BaseAdapter {
 
                 if (viewHolder.messageText != null) {
                     viewHolder.messageText.setGravity(Gravity.LEFT);
-                    String source = message.getLanguage_code();
+                    String source = message.getSender_language();
                     String target = Config.getInstance(context).getLanguageCode();
                     if (!source.equals(target)) {
                         final ViewHolder finalViewHolder = viewHolder;
@@ -102,7 +102,7 @@ public class ChatDetailsAdapter extends BaseAdapter {
                             }
                         };
 
-                        new TranslatorTask(message.getLanguage_code(),
+                        new TranslatorTask(message.getSender_language(),
                                 Config.getInstance(context).getLanguageCode(),
                                 message.getText(),
                                 callback).execute();

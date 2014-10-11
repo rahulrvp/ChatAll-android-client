@@ -32,7 +32,7 @@ public class ChatDetailsActivity extends Activity {
             user.setName("Rahul");
 
             Message message = new Message();
-            message.setLanguage_code("en");
+            message.setSender_language("en");
             message.setText("Hello dude, what's up.?");
             message.setSender(user);
 
@@ -40,7 +40,7 @@ public class ChatDetailsActivity extends Activity {
             messages[0] = message;
 
             Message message2 = new Message();
-            message2.setLanguage_code("en");
+            message2.setSender_language("en");
             message2.setText("Fine bro");
             message2.setSender(user);
 

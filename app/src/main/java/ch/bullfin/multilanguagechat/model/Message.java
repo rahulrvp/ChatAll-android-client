@@ -7,8 +7,8 @@ public class Message {
     private long id;
     private long chat_id;
     private String text;
-    private String language_code;
-    private long timestamp;
+    private String sender_language;
+    private long created_at;
     private User sender;
 
     public User getSender() {
@@ -43,19 +43,19 @@ public class Message {
         this.text = text;
     }
 
-    public String getLanguage_code() {
-        return language_code;
+    public String getSender_language() {
+        return sender_language;
     }
 
-    public void setLanguage_code(String language_code) {
-        this.language_code = language_code;
+    public void setSender_language(String sender_language) {
+        this.sender_language = sender_language;
     }
 
-    public long getTimestamp() {
-        return timestamp;
+    public long getCreated_at() {
+        return created_at;
     }
 
-    public void setTimestamp(long timestamp) {
-        this.timestamp = timestamp;
+    public void setCreated_at(long created_at) {
+        this.created_at = created_at;
     }
 }
