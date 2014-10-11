@@ -23,6 +23,7 @@
             android:id="@+id/login_username"
             style="@style/login_page_edit_text_style"
             android:inputType="textEmailAddress"
+            android:text="rahul@bullfin.ch"
             android:hint="@string/login_user_name"/>
 
         <EditText
@@ -30,6 +31,7 @@
             style="@style/login_page_edit_text_style"
             android:inputType="textPassword"
             android:textColor="@color/black"
+            android:text="qwerty123"
             android:hint="@string/login_password"/>
 
         <Button

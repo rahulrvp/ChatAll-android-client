@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -15,7 +14,7 @@ import java.util.HashSet;
 import java.util.Locale;
 
 import ch.bullfin.multilanguagechat.R;
-import ch.bullfin.multilanguagechat.config.Configuration;
+import ch.bullfin.multilanguagechat.config.Config;
 
 /**
  * Created by root on 11/10/14.
@@ -27,11 +26,14 @@ public class LangSettingsActivity extends BaseActivity {
     private Button mSubmitLangButton;
     private Spinner mLangListSpinner;
     private HashMap<String,String> mLangMap;
+    private Config mConfig;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lang_settings);
+
+        mConfig = Config.getInstance(this);
 
         mSubmitLangButton = (Button) findViewById(R.id.submit_lang_button);
         mLangListSpinner = (Spinner) findViewById(R.id.lang_list_spinner);
@@ -60,22 +62,13 @@ public class LangSettingsActivity extends BaseActivity {
         langSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mLangListSpinner.setAdapter(langSpinnerAdapter);
 
-        Configuration currentConfig = Configuration.getInstance(mContext);
-        if ( currentConfig != null) {
-            Toast.makeText(mContext,currentConfig.getCurrentLang(mContext),Toast.LENGTH_LONG).show();
-        }
-
-
-        mSubmitLangButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(mContext,mLangListSpinner.getSelectedItem().toString(),Toast.LENGTH_LONG).show();
-                Configuration currentConfig = Configuration.getInstance(mContext);
-                currentConfig.setCurrentLang(mLangMap.get(mLangListSpinner.getSelectedItem().toString()));
-                currentConfig.save(mContext);
-            }
-        });
-
+        mLangListSpinner.setSelection(mDeviceLangList.indexOf(mConfig.getLanguageName()));
     }
 
+    public void onUpdateClicked(View view) {
+        mConfig.setLanguageName(mLangListSpinner.getSelectedItem().toString());
+        mConfig.setLanguageCode(mLangMap.get(mLangListSpinner.getSelectedItem().toString()));
+        mConfig.save(this);
+        finish();
+    }
 }

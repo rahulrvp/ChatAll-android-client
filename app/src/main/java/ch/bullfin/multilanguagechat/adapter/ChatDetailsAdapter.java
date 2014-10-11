@@ -14,6 +14,7 @@ import java.util.Collections;
 
 import ch.bullfin.multilanguagechat.R;
 import ch.bullfin.multilanguagechat.async.TranslatorTask;
+import ch.bullfin.multilanguagechat.config.Config;
 import ch.bullfin.multilanguagechat.model.Message;
 import ch.bullfin.multilanguagechat.model.User;
 
@@ -85,23 +86,29 @@ public class ChatDetailsAdapter extends BaseAdapter {
 
                 if (viewHolder.messageText != null) {
                     viewHolder.messageText.setGravity(Gravity.LEFT);
-                    final ViewHolder finalViewHolder = viewHolder;
-                    TranslatorTask.TranslationCallback callback = new TranslatorTask.TranslationCallback() {
-                        @Override
-                        public void onTranslationCompleted(String message) {
-                            finalViewHolder.messageText.setText(message);
-                        }
+                    String source = message.getLanguage_code();
+                    String target = Config.getInstance(context).getLanguageCode();
+                    if (!source.equals(target)) {
+                        final ViewHolder finalViewHolder = viewHolder;
+                        TranslatorTask.TranslationCallback callback = new TranslatorTask.TranslationCallback() {
+                            @Override
+                            public void onTranslationCompleted(String message) {
+                                finalViewHolder.messageText.setText(message);
+                            }
 
-                        @Override
-                        public void onTranslationFailed() {
+                            @Override
+                            public void onTranslationFailed() {
 
-                        }
-                    };
+                            }
+                        };
 
-                    new TranslatorTask(message.getLanguage_code(),
-                            "kn",
-                            message.getText(),
-                            callback).execute();
+                        new TranslatorTask(message.getLanguage_code(),
+                                Config.getInstance(context).getLanguageCode(),
+                                message.getText(),
+                                callback).execute();
+                    } else {
+                        viewHolder.messageText.setText(message.getText());
+                    }
                 }
 
                 if (viewHolder.sendingTimeText != null) {
