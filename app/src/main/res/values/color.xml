@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="theme_background_color">#53559F</color>
+    <color name="theme_button_color">#1F206A</color>
+    <color name="theme_button_press_color">#9D9EDE</color>
+    <color name="theme_inverse_color">#ffffff</color>
+
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+</resources>
