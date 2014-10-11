@@ -24,18 +24,18 @@
         android:layout_below="@+id/login_logo"
         android:gravity="center"
         android:textColor="@color/theme_inverse_color"
-        android:textSize="30sp"
+        android:textSize="35sp"
         android:textStyle="bold"
         android:text="ChatAll"/>
 
     <TextView
         android:id="@+id/app_title"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="20dp"
         android:layout_below="@+id/app_name"
         android:gravity="center"
         android:textColor="@color/theme_inverse_color"
-        android:textSize="20sp"
+        android:textSize="15sp"
         android:text="Chat independent of languages"/>
 
 
