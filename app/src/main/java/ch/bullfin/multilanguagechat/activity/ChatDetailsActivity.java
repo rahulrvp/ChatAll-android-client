@@ -22,11 +22,14 @@ public class ChatDetailsActivity extends Activity {
     private ListView mListView;
     private ChatDetailsAdapter mAdapter;
     private EditText mMessageField;
+    private long mChatId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_details);
+
+        mChatId = getIntent().getLongExtra("chat_id", 0);
 
         mMessageField = (EditText) findViewById(R.id.message_field);
         mListView = (ListView) findViewById(R.id.chat_details_list);
@@ -83,6 +86,7 @@ public class ChatDetailsActivity extends Activity {
             message.setText(messageString);
             message.setLanguage_code(Config.getInstance(this).getLanguageCode());
             message.setSender(User.getInstance(this));
+            message.setChat_id(mChatId);
 
             new SendMessageTask(this, message, new SendMessageTask.SendMessageCallback() {
                 @Override
