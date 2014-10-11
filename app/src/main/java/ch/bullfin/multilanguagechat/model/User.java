@@ -12,10 +12,11 @@ public class User {
     private static final String PREF_FILE = "UserFile";
     private static final String PREF_KEY = "UserKey";
 
-    private long id;
+    private String id;
     private String name;
     private String email;
     private String phoneNumber;
+    private String authentication_token;
 
     private static User instance = null;
 
@@ -44,11 +45,11 @@ public class User {
                 .commit();
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -62,6 +63,14 @@ public class User {
 
     public String getEmail() {
         return email;
+    }
+
+    public String getAuthenticationToken() {
+        return authentication_token;
+    }
+
+    public void setAuthenticationToken(String authentication_tocken) {
+        this.authentication_token = authentication_tocken;
     }
 
     public void setEmail(String email) {

@@ -17,6 +17,7 @@ import java.util.HashMap;
 import ch.bullfin.httpmanager.HTTPManager;
 import ch.bullfin.httpmanager.Response;
 import ch.bullfin.multilanguagechat.R;
+import ch.bullfin.multilanguagechat.async.LoginTask;
 import ch.bullfin.multilanguagechat.model.User;
 import ch.bullfin.multilanguagechat.util.BFUtils;
 
@@ -116,6 +117,7 @@ public class SignUpActivity extends BaseActivity {
             if (result == 200) {
                 mCurrentUser.save(mContext);
                 Toast.makeText(mContext, getResources().getString(R.string.signup_success), Toast.LENGTH_SHORT).show();
+                new LoginTask(mCurrentUser.getEmail(), mPasswordText, mContext, mSignUpSpinner).execute();
             } else {
                 Toast.makeText(mContext, getResources().getString(R.string.signup_failed), Toast.LENGTH_SHORT).show();
             }
