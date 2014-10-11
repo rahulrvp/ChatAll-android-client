@@ -19,8 +19,12 @@
     <string name="sign_up_msg">Not a member yet?</string>
     <string name="title_activity_friend_list">FriendListActivity</string>
 
-    <!--Friends Page-->
+    <!-- Friends Page -->
     <string name="friends_header">My Friends</string>
     <string name="friends_count">results</string>
+    <string name="title_activity_my_chats">MyChatsActivity</string>
+
+    <!--Chat Page-->
+    <string name="chats_header">My Chats</string>
 
 </resources>

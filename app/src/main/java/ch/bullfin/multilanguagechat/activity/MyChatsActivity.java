@@ -9,17 +9,16 @@ import android.view.View;
 
 import ch.bullfin.multilanguagechat.R;
 
-
-public class LoginActivity extends BaseActivity {
+public class MyChatsActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_my_chats);
     }
 
-    public void onLoginClicked(View view) {
-        Intent intent = new Intent(mContext, MyChatsActivity.class);
+    public void onFriendsClicked(View view) {
+        Intent intent = new Intent(mContext, FriendListActivity.class);
         startActivity(intent);
     }
 }
