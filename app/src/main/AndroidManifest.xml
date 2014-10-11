@@ -39,6 +39,11 @@
             android:label="@string/title_activity_my_chats"
             android:screenOrientation="portrait">
         </activity>
+
+        <activity
+            android:name=".activity.LangSettingsActivity"
+            android:label="@string/title_activity_lang_settings"/>
+
     </application>
 
 </manifest>
