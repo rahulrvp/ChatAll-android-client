@@ -15,6 +15,8 @@ import java.util.Collections;
 import ch.bullfin.multilanguagechat.R;
 import ch.bullfin.multilanguagechat.model.Chat;
 import ch.bullfin.multilanguagechat.model.Message;
+import ch.bullfin.multilanguagechat.model.Participant;
+import ch.bullfin.multilanguagechat.model.User;
 
 /**
  * Created by meera on 11/10/14.
@@ -63,9 +65,25 @@ public class ChatListAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
             if (viewHolder != null) {
-                viewHolder.name.setText("Meera");
-                viewHolder.time.setText("7.00pm");
-                viewHolder.chatmsg.setText("hello");
+                Chat chat = (Chat) getItem(position);
+                if (chat !=null) {
+                    Message[] message = chat.getMessage_texts();
+                    Participant[] participants = chat.getParticipants();
+                    for (int i = 0; i <participants.length ; i++) {
+                        if (participants[i].getUser().getId() != User.getInstance(mContext).getId()){
+                            if (viewHolder.name != null) {
+                                viewHolder.name.setText(participants[i].getUser().getName());
+                            }
+                        }
+                    }
+
+                    if (viewHolder.time != null) {
+                        viewHolder.time.setText("");
+                    }
+                    if (viewHolder.chatmsg != null && message != null) {
+                        viewHolder.chatmsg.setText(message[(message.length)-1].getText());
+                    }
+                }
             }
 //        Fill data to List Cell
         return convertView;
