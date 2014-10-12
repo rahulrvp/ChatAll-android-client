@@ -29,7 +29,7 @@ public class FriendListAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 3;
+        return mFriends.size();
     }
 
     @Override
@@ -73,9 +73,9 @@ public class FriendListAdapter extends BaseAdapter {
         ImageView prof_pic;
     }
 
-    public void setValues(ArrayList<User> enquires) {
+    public void setValues(ArrayList<User> friends) {
         mFriends.clear();
-        mFriends.addAll(enquires);
+        mFriends.addAll(friends);
         notifyDataSetChanged();
     }
 }

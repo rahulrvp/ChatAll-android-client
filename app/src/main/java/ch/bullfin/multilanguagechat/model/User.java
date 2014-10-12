@@ -3,9 +3,12 @@ package ch.bullfin.multilanguagechat.model;
 import android.content.Context;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
 
 import java.io.Serializable;
+
+import ch.bullfin.multilanguagechat.util.BFUtils;
 
 /**
  * Created by root on 11/10/14.
@@ -20,24 +23,29 @@ public class User implements Serializable {
     private String phoneNumber;
     private String authentication_token;
 
-    private static User instance = null;
+    private static User mCurrentUser = null;
 
-    public static User getInstance(Context context) {
-        if (instance == null) {
-            String json = context.getSharedPreferences(PREF_FILE, Context.MODE_PRIVATE)
-                    .getString(PREF_KEY, null);
-            try {
-                instance = new Gson().fromJson(json, User.class);
-            } catch (JsonSyntaxException e) {
-                e.getStackTrace();
-            }
-
-            if (instance == null) {
-                instance = new User();
+    public static synchronized User getInstance(Context context) {
+        if(mCurrentUser == null) {
+            mCurrentUser = load(context);
+            if (mCurrentUser == null) {
+                mCurrentUser = new User();
             }
         }
+        return mCurrentUser;
+    }
 
-        return instance;
+    private static User load(Context context) {
+        User user = null;
+
+        String userJson = BFUtils.loadFromSharedPreference(context, PREF_FILE, PREF_KEY);
+        if(userJson != null) {
+            Gson gson = new Gson();
+            try {
+                user = gson.fromJson(userJson, User.class);
+            } catch (JsonParseException e) { }
+        }
+        return user;
     }
 
     public void save(Context context) {

@@ -37,33 +37,11 @@ public class ChatDetailsActivity extends Activity {
         mMessageField = (EditText) findViewById(R.id.message_field);
         mListView = (ListView) findViewById(R.id.chat_details_list);
         if (mListView != null) {
-            /* This is junk data */
-            /*User user = new User();
-            user.setId(1);
-            user.setName("Rahul");
-
-            Message message = new Message();
-            message.setSender_language("en");
-            message.setText("Hello dude, what's up.?");
-            message.setSender(user);
-
-            Message[] messages = new Message[2];
-            messages[0] = message;
-
-            Message message2 = new Message();
-            message2.setSender_language("en");
-            message2.setText("Fine bro");
-            message2.setSender(user);
-
-            User user2 = new User();
-            user2.setId(0);
-            user2.setName("Saneep");
-
-            message2.setSender(user2);
-            messages[1] = message2;*/
 
             mAdapter = new ChatDetailsAdapter(this);
-            mAdapter.updateMessages(mChat.getMessage_texts());
+            if (mChat != null) {
+                mAdapter.updateMessages(mChat.getMessage_texts());
+            }
 
             mListView.setAdapter(mAdapter);
         }

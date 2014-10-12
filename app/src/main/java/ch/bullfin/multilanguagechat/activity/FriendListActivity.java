@@ -4,10 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 
@@ -25,6 +28,8 @@ public class FriendListActivity extends BaseActivity {
     private Context context;
 
     private ProgressBar mPropertySpinner;
+    private TextView mFilterText;
+    private TextView mCount;
     private ArrayList<User> mFriendLists;
     private FriendListAdapter mFriendListAdapter;
     private ListView mFriendList;
@@ -38,6 +43,10 @@ public class FriendListActivity extends BaseActivity {
         mFriendList = (ListView) findViewById(R.id.friends_list);
         mPropertySpinner = (ProgressBar) findViewById(R.id.friends_list_progress);
         mFriendLists = new ArrayList<User>();
+        mFilterText = (TextView) findViewById(R.id.friend_filter_text);
+        mCount = (TextView) findViewById(R.id.friend_list_count);
+
+        new FetchFriendListTask().execute();
 
         if (mFriendList != null) {
             mFriendList.setAdapter(mFriendListAdapter);
@@ -48,6 +57,47 @@ public class FriendListActivity extends BaseActivity {
                 }
             });
         }
+
+        mFilterText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+                filter(charSequence.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+    }
+
+    public void filter(String filterText) {
+        ArrayList<User> filteredList = new ArrayList<User>();
+        for (User user : mFriendLists) {
+            if (checkField(user.getName(), filterText)) {
+                filteredList.add(user);
+            }
+        }
+
+        if (mFriendListAdapter != null) {
+            mFriendListAdapter.setValues(filteredList);
+        }
+
+        if (mCount != null) {
+            mCount.setText("" + filteredList.size());
+        }
+    }
+
+    public boolean checkField(String value, String filterText) {
+        if (value != null && filterText != null) {
+            return (value.toLowerCase().contains(filterText.toLowerCase()));
+        }
+        return false;
     }
 
     public void onChatsClicked(View view) {
@@ -68,15 +118,14 @@ public class FriendListActivity extends BaseActivity {
         protected ArrayList<User> doInBackground(Void... voids) {
             Gson gson = new Gson();
             HashMap<String,String> params = new HashMap<String, String>();
-            params.put("user_id", "1");
+            params.put("user_id", String.valueOf(User.getInstance(mContext).getId()));
 
-            Response response = new HTTPManager("URL").get(params);
+            Response response = new HTTPManager("http://sandbox.bullfin.ch:9000/users.json").get(params);
 
             if (response.getStatusCode() == 200) {
                 User[] users = gson.fromJson(response.getResponseBody(), User[].class);
                 mFriendLists = new ArrayList<User>();
                 Collections.addAll(mFriendLists, users);
-
 
             }
 
@@ -88,6 +137,19 @@ public class FriendListActivity extends BaseActivity {
             if (mPropertySpinner != null) {
                 mPropertySpinner.setVisibility(View.GONE);
             }
+
+            if (mFriendListAdapter != null) {
+                mFriendListAdapter.setValues(result);
+            }
+
+            if (mCount != null) {
+                mCount.setText("" + mFriendLists.size());
+            }
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        new FetchFriendListTask().execute();
     }
 }
