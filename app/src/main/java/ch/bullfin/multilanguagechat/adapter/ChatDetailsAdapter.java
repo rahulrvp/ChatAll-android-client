@@ -1,7 +1,6 @@
 package ch.bullfin.multilanguagechat.adapter;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,6 +33,15 @@ public class ChatDetailsAdapter extends BaseAdapter {
     public void updateMessages(Message[] messages) {
         Collections.addAll(this.messages, messages);
         notifyDataSetChanged();
+    }
+
+    public long getLastTimestamp() {
+        if (messages != null) {
+            Message message = messages.get(messages.size() - 1);
+            return message.getCreated_at();
+        }
+
+        return 0;
     }
 
     @Override
@@ -69,6 +77,7 @@ public class ChatDetailsAdapter extends BaseAdapter {
         viewHolder = (ViewHolder) convertView.getTag();
         Message message = (Message) getItem(position);
         if (viewHolder != null && message != null) {
+            viewHolder.clearTexts();
             // Checking whether message sender is me.
             if (message.getSender().getId() == User.getInstance(context).getId()) {
                 convertView.setBackgroundColor(context.getResources().getColor(R.color.resiever_color));
@@ -124,5 +133,11 @@ public class ChatDetailsAdapter extends BaseAdapter {
         TextView senderNameText;
         TextView messageText;
         TextView sendingTimeText;
+
+        public void clearTexts() {
+            if (messageText != null) {
+                messageText.setText("Translating...");
+            }
+        }
     }
 }

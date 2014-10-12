@@ -9,6 +9,7 @@ import android.widget.ListView;
 
 import ch.bullfin.multilanguagechat.R;
 import ch.bullfin.multilanguagechat.adapter.ChatDetailsAdapter;
+import ch.bullfin.multilanguagechat.async.FetchUnreadMessagesTask;
 import ch.bullfin.multilanguagechat.async.SendMessageTask;
 import ch.bullfin.multilanguagechat.config.Config;
 import ch.bullfin.multilanguagechat.model.Chat;
@@ -76,6 +77,18 @@ public class ChatDetailsActivity extends Activity {
         }
     }
 
+    public void onRefreshButton(View view) {
+        new FetchUnreadMessagesTask(this,
+                mChat.getId(),
+                mAdapter.getLastTimestamp(),
+                new FetchUnreadMessagesTask.FetchUnreadMessagesTaskCallback() {
+                    @Override
+                    public void onNewMessagesReceived(Message[] messages) {
+                        mAdapter.updateMessages(messages);
+                    }
+                }).execute();
+    }
+
     public void onConfigurationClicked(View view) {
         startActivity(new Intent(this, LangSettingsActivity.class));
     }
@@ -83,7 +96,7 @@ public class ChatDetailsActivity extends Activity {
     public void onSendMessageClicked(View view) {
         String messageString = mMessageField.getText().toString();
         if (messageString != null && messageString.length() > 0) {
-            Message message = new Message();
+            final Message message = new Message();
             message.setCreated_at(System.currentTimeMillis() / 1000); // time in seconds
             message.setText(messageString);
             message.setSender_language(Config.getInstance(this).getLanguageCode());
@@ -93,9 +106,14 @@ public class ChatDetailsActivity extends Activity {
             new SendMessageTask(this, message, new SendMessageTask.SendMessageCallback() {
                 @Override
                 public void onMessageSent() {
-
+                    mMessageField.setText("");
+                    Message[] messages = new Message[1];
+                    messages[0]= message;
+                    mAdapter.updateMessages(messages);
                 }
             }).execute();
         }
     }
+
+
 }
