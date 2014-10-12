@@ -1,7 +1,6 @@
 package ch.bullfin.multilanguagechat.adapter;
 
 import android.content.Context;
-import android.text.format.Time;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +13,6 @@ import java.util.Collections;
 
 import ch.bullfin.multilanguagechat.R;
 import ch.bullfin.multilanguagechat.model.Chat;
-import ch.bullfin.multilanguagechat.model.Message;
 
 /**
  * Created by meera on 11/10/14.
@@ -63,7 +61,7 @@ public class ChatListAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
             if (viewHolder != null) {
-                viewHolder.name.setText("Meera");
+                viewHolder.name.setText("Chat #" + (position + 1));
                 viewHolder.time.setText("7.00pm");
                 viewHolder.chatmsg.setText("hello");
             }
