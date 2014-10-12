@@ -46,7 +46,7 @@ public class SendMessageTask extends AsyncTask<Void, Void, Response> {
 
     @Override
     protected void onPostExecute(Response response) {
-        if (response.getStatusCode() == 200) {
+        if (response.getStatusCode() == 201) {
             callback.onMessageSent();
         }
     }
