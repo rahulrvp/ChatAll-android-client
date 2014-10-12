@@ -39,7 +39,7 @@ public class MyChatsActivity extends BaseActivity {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     Intent intent = new Intent(mContext, ChatDetailsActivity.class);
-                    intent.putExtra("chat", chatListAdapter.getItem(0));
+                    intent.putExtra("chat", chatListAdapter.getItem(i));
                     startActivity(intent);
                 }
             });
