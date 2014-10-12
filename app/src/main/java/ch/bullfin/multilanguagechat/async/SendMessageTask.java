@@ -41,7 +41,7 @@ public class SendMessageTask extends AsyncTask<Void, Void, Response> {
         params.put("authentication_token", User.getInstance(context).getAuthenticationToken());
         params.put("message_text", messageText);
 
-        return new HTTPManager("http://sandbox.bullfin.ch:9000/users/" + userId + "/chats/1/message_texts.json").post(new Gson().toJson(params));
+        return new HTTPManager("http://sandbox.bullfin.ch:9000/users/" + userId + "/chats/" + chatId + "/message_texts.json").post(new Gson().toJson(params));
     }
 
     @Override
