@@ -61,8 +61,8 @@ public class ChatListAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
             if (viewHolder != null) {
-                viewHolder.name.setText("Chat #" + (position + 1));
-                viewHolder.time.setText("7.00pm");
+                viewHolder.name.setText("Bullfinch" + (position + 1));
+                viewHolder.time.setText("");
                 viewHolder.chatmsg.setText("hello");
             }
 //        Fill data to List Cell

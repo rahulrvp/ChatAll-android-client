@@ -24,7 +24,7 @@
     <string name="title_activity_my_chats">MyChatsActivity</string>
 
     <!-- Chat Page -->
-    <string name="chats_header">My Chats</string>
+    <string name="chats_header">Chat Groups</string>
     <string name="title_activity_sign_up">SignUpActivity</string>
 
     <!--Signup page-->

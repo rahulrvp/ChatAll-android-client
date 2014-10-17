@@ -21,7 +21,7 @@ public class User implements Serializable {
     private String name;
     private String email;
     private String phoneNumber;
-    private String authentication_token;
+    private String authentication_token = null;
 
     private static User mCurrentUser = null;
 

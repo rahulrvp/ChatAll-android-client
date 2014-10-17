@@ -95,4 +95,9 @@ public class MyChatsActivity extends BaseActivity {
             mHandler.postDelayed(fetchMyChatsRunnable, 1000);
         }
     };
+
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+    }
 }

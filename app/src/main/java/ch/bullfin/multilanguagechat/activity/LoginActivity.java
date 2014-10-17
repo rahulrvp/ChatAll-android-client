@@ -31,6 +31,11 @@ public class LoginActivity extends BaseActivity {
         mEmailField = (EditText) findViewById(R.id.login_username);
         mPasswordField = (EditText) findViewById(R.id.login_password);
         mSignInProgress = (ProgressBar) findViewById(R.id.login_progress);
+
+        if (mCurrentUser.getAuthenticationToken() != null) {
+            Intent intent = new Intent(mContext, MyChatsActivity.class);
+            startActivity(intent);
+        }
     }
 
     public void onLoginClicked(View view) {
