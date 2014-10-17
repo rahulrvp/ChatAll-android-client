@@ -6,11 +6,11 @@
 
     <ImageView
         android:id="@+id/login_logo"
-        android:layout_height="140dp"
-        android:layout_width="200dp"
+        android:layout_height="120dp"
+        android:layout_width="140dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        android:background="@drawable/chat_app_logo"/>
+        android:background="@drawable/logo_p"/>
 
     <LinearLayout
         android:id="@+id/login_control_layout"

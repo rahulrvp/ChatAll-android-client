@@ -100,4 +100,6 @@ public class MyChatsActivity extends BaseActivity {
     public void onBackPressed() {
         moveTaskToBack(true);
     }
+
+
 }

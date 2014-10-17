@@ -51,20 +51,11 @@ public class ChatListAdapter extends BaseAdapter {
             if (convertView == null) return null;
 
             viewHolder = new ViewHolder();
-            viewHolder.prof_pic = (ImageView) convertView.findViewById(R.id.friend_image);
-            viewHolder.name = (TextView) convertView.findViewById(R.id.friend_name);
-            viewHolder.time = (TextView) convertView.findViewById(R.id.time);
-            viewHolder.chatmsg = (TextView) convertView.findViewById(R.id.msg);
             convertView.setTag(viewHolder);
 
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-            if (viewHolder != null) {
-                viewHolder.name.setText("Bullfinch" + (position + 1));
-                viewHolder.time.setText("");
-                viewHolder.chatmsg.setText("hello");
-            }
 //        Fill data to List Cell
         return convertView;
     }
