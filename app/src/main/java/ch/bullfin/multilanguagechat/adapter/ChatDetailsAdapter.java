@@ -36,7 +36,7 @@ public class ChatDetailsAdapter extends BaseAdapter {
     }
 
     public long getLastTimestamp() {
-        if (messages != null) {
+        if (messages != null && !messages.isEmpty()) {
             Message message = messages.get(messages.size() - 1);
             return message.getCreated_at();
         }
